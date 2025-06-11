@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  header: string = "/images/hero-image.jpg";
 
 }
