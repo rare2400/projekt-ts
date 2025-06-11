@@ -10,6 +10,7 @@ header {
     width: 90%;
     height: auto;
     margin-left: 0.5em;
+    max-width: 150px;
 }
 
 nav {
@@ -59,11 +60,11 @@ nav li a {
     }
 
     nav li {
-        margin: 0 0.5rem;
+        margin: 0 1em 0 0;
     }
 
     nav li a {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1.3rem;
         font-size: 1em;
     }
 }
