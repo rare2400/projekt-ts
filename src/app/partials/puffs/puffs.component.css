@@ -1,0 +1,26 @@
+.puff-container, .puff, .puff img {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 1em;
+}
+
+mat-card-title {
+    font-size: 1.5em;
+    font-weight: 500;
+    text-align: center;
+}
+
+mat-card-content, mat-card-actions {
+    margin: 0 1em;
+}
+
+@media (min-width: 50rem) {
+    .puff-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1em;
+        max-width: 65em;
+    }
+}
+
+
