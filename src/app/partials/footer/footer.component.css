@@ -1,0 +1,25 @@
+footer {
+    background-color: rgb(215, 227, 255);
+    padding: 1.5em;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+p {
+    font-size: 0.9em;
+    margin: 0.5em 0;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
