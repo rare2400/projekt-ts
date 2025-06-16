@@ -1,51 +1,56 @@
 <h1>Kurser</h1>
-<p>Här hittar du vårt kursutbud och kan sätta ihop ditt eget ramschema. Filtrera efter kurskod, namn, poäng och ämne,
-    eller sök fram kursen du söker med namnet eller kurskoden. </p>
+<p>Här hittar du vårt kursutbud och kan sätta ihop ditt eget ramschema. Filtrera listan efter kurskod, namn, poäng och ämne,
+    eller sök fram den kurs du söker med namn eller kurskod. </p>
 <div class="filter-field">
-<mat-form-field>
-    <mat-label for="filter">Filtrera kurser:</mat-label>
-    <input matInput placeholder="Sök kurs eller kurskod" id="filter" [value]="filterValue()"
-    (input)="filterValue.set($any($event.target).value)">
-</mat-form-field>
-<mat-form-field>
-    <mat-label for="select-subject">Ämne:</mat-label>
-    <mat-select [value]="filterSubject()" id="select-subject" (selectionChange)="filterSubject.set($event.value)">
-        <mat-option value="">Alla ämnen</mat-option>
-        <mat-option *ngFor="let subject of chooseSubject()" [value]="subject">{{ subject }}</mat-option>
-    </mat-select>
-</mat-form-field>
+    <mat-form-field>
+        <mat-label for="filter">Filtrera kurser:</mat-label>
+        <input matInput placeholder="Sök kurs eller kurskod" id="filter" [value]="filterValue()"
+            (input)="filterValue.set($any($event.target).value)">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label for="select-subject">Ämne:</mat-label>
+        <mat-select [value]="filterSubject()" id="select-subject" (selectionChange)="filterSubject.set($event.value)">
+            <mat-option value="">Alla ämnen</mat-option>
+            <mat-option *ngFor="let subject of chooseSubject()" [value]="subject">{{ subject }}</mat-option>
+        </mat-select>
+    </mat-form-field>
 </div>
 
+<mat-paginator [length]="filteredCourses().length" [pageSize]="pageSize()" [pageSizeOptions]="pageSizeOptions()"
+    (page)="onPageChange($event)" showFirstLastButtons aria-label="Välj antal kurser per sida">
+</mat-paginator>
+
 <div class="table">
-    <table mat-table [dataSource]="filteredCourses()" class="mat-elevation-z8">
+    <table mat-table [dataSource]="paginatedCourses()" class="mat-elevation-z8">
         <ng-container matColumnDef="courseCode">
-            <th mat-header-cell *matHeaderCellDef (click)="sortBy('courseCode')" class="th-link">Kod</th>
+            <th mat-header-cell *matHeaderCellDef (click)="sortBy('courseCode')">Kod</th>
             <td mat-cell *matCellDef="let course"> {{course.courseCode}} </td>
         </ng-container>
 
         <ng-container matColumnDef="courseName">
-            <th mat-header-cell *matHeaderCellDef (click)="sortBy('courseName')" class="th-link">Kursnamn</th>
+            <th mat-header-cell *matHeaderCellDef (click)="sortBy('courseName')">Kursnamn</th>
             <td mat-cell *matCellDef="let course"> {{course.courseName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="points">
-            <th mat-header-cell *matHeaderCellDef (click)="sortBy('points')" class="th-link">Poäng</th>
+            <th mat-header-cell *matHeaderCellDef (click)="sortBy('points')">Poäng</th>
             <td mat-cell *matCellDef="let course"> {{course.points}}p</td>
         </ng-container>
 
         <ng-container matColumnDef="subject">
-            <th mat-header-cell *matHeaderCellDef (click)="sortBy('subject')" class="th-link">Ämne</th>
+            <th mat-header-cell *matHeaderCellDef (click)="sortBy('subject')">Ämne</th>
             <td mat-cell *matCellDef="let course"> {{course.subject}} </td>
         </ng-container>
 
         <ng-container matColumnDef="syllabus">
             <th mat-header-cell *matHeaderCellDef>Kursplan</th>
-            <td mat-cell *matCellDef="let course"><a [href]="course.syllabus" target="_blank" rel="noopener" id="syllabus">Kursplan</a></td>
+            <td mat-cell *matCellDef="let course"><a [href]="course.syllabus" target="_blank" rel="noopener"
+                    id="syllabus">Kursplan</a></td>
         </ng-container>
 
         <ng-container matColumnDef="add">
             <th mat-header-cell *matHeaderCellDef>Lägg till</th>
-            <td mat-cell *matCellDef="let course" id="add"> 
+            <td mat-cell *matCellDef="let course" id="add">
                 <button mat-flat-button (click)="addCourse(course)">
                     <mat-icon>add</mat-icon>
                     Lägg till
@@ -56,5 +61,11 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+    <div id="bottom-paginator">
+        <mat-paginator [length]="filteredCourses().length" [pageSize]="pageSize()" [pageSizeOptions]="pageSizeOptions()"
+            (page)="onPageChange($event)" showFirstLastButtons aria-label="Välj antal kurser per sida">
+        </mat-paginator>
+    </div>
 
 </div>
