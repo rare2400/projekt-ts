@@ -28,9 +28,25 @@ export class RamschemaService {
     }
   }
 
+  getTotPoints(): number {
+    return this.schema().reduce((total, course) => total + course.points, 0);
+  }
+
+  getCourseCount(): number {
+    return this.schema().length;
+  }
+
   private loadFromStorage(): Course[] {
     const storedCourses = localStorage.getItem(this.storageKey);
     return storedCourses ? JSON.parse(storedCourses) : [];
   }
 
+  deleteCourse(courseCode: string) {
+    this.schema.set(this.schema().filter(c => c.courseCode !== courseCode));
+  }
+
+  clearCourses() {
+    this.schema.set([]);
+    localStorage.removeItem(this.storageKey);
+  }
 }
