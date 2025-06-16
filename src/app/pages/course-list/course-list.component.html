@@ -1,5 +1,5 @@
 <h1>Mitt ramschema</h1>
-<p id="ingress">Här hittar du ditt eget ramschema. Se totala poäng kurserna ger och ta bort kurser. </p>
+<p id="ingress">Här hittar du ditt eget ramschema, se totala högskolepoäng kurserna ger och ta bort kurser. </p>
 
 <div class="table">
     <table mat-table [dataSource]="getCourses()" class="mat-elevation-z8">
@@ -32,7 +32,7 @@
         <ng-container matColumnDef="delete">
             <th mat-header-cell *matHeaderCellDef id="delete-heading">Ta bort</th>
             <td mat-cell *matCellDef="let course" id="delete">
-                <button mat-flat-button>
+                <button mat-flat-button (click)="deleteCourse(course.courseCode)">
                     <mat-icon>delete</mat-icon>
                     Ta bort
                 </button>
@@ -42,5 +42,16 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+    <div class="box">
+        <div class="info">
+            <p><strong>Antal kurser:</strong> {{ courseCount() }}st</p>
+            <p><strong>Totalt antal poäng:</strong> {{ totalPoints() }} hp</p>
+        </div>
+        <button mat-flat-button (click)="clearAll()" id="clear">
+            <mat-icon>delete</mat-icon>
+            Ta bort alla kurser
+        </button>
+    </div>
 
 </div>
