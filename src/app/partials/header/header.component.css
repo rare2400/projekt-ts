@@ -12,6 +12,10 @@ header {
     max-width: 150px;
 }
 
+.logo:hover {
+    transform: scale(1.05);
+}
+
 nav {
     padding: 0;
     text-align: center;
@@ -47,7 +51,7 @@ nav li a {
     border-radius: 5px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 50em) {
     .logo {
         width: 50%;
         margin-left: 1em;
