@@ -11,17 +11,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-courses',
-  imports: [FormsModule, CommonModule, MatInputModule, MatSelect, MatOption, MatFormFieldModule, MatTableModule, MatButtonModule, MatIconModule, MatSnackBarModule],
+  imports: [FormsModule, CommonModule, MatInputModule, MatSelect, MatOption, MatFormFieldModule, MatTableModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatPaginatorModule],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'
 })
 export class CoursesComponent {
   /** 
    * signals med kursdata, 
-   * för textfiltrering, ämnesfiltrering, sorteringsnyckel, stigande/fallande sorterfing 
+   * för textfiltrering, ämnesfiltrering, sorteringsnyckel, stigande/fallande sortering 
    * och kolumner som visas i tabellen
    * */
   courses = signal(<Course[]>[]);
@@ -30,6 +31,11 @@ export class CoursesComponent {
   sortKey = signal<keyof Course>("courseCode");
   sortAsc = signal<boolean>(true);
   displayedColumns: string[] = ["courseCode", "courseName", "points", "subject", "syllabus", "add"];
+
+  //signals för paginering
+  pageIndex = signal<number>(0);
+  pageSize = signal<number>(10);
+  pageSizeOptions = signal<number[]>([10, 25, 50, 100]);
 
   constructor(private courseService: CoursedataService, private ramschema: RamschemaService, private snackBar: MatSnackBar) { }
 
@@ -56,6 +62,12 @@ export class CoursesComponent {
     return result;
   });
 
+  paginatedCourses = computed(() => {
+    const allCourses = this.filteredCourses();
+    const startIndex = this.pageIndex() * this.pageSize();
+    return allCourses.slice(startIndex, startIndex + this.pageSize());
+  });
+
   //initialiserar komponenten och hämtar kurser från skapad service
   ngOnInit(): void {
     this.courseService.getCourses().subscribe((courses: Course[]) =>
@@ -72,7 +84,7 @@ export class CoursesComponent {
    * sorterar kurserna baserat på vald rubrik/sorteringsnyckel
    * sorteringsriktingen ändras vid klick på samma rubrik
    */
-  sortBy(key: keyof Course) {
+  sortBy(key: keyof Course): void {
     if (this.sortKey() === key) {
       this.sortAsc.set(!this.sortAsc());
     } else {
@@ -81,11 +93,23 @@ export class CoursesComponent {
     }
   }
 
-  addCourse(course: Course) {
-    this.ramschema.addCourse(course);
-    this.snackBar.open("Kurs tillagd i ramschema", "Stäng", {
-      duration: 3000
-    });
+  addCourse(course: Course): void {
+    const added = this.ramschema.addCourse(course);
+
+    if(added) {
+      this.snackBar.open("Kurs tillagd i ramschema", "Stäng", {
+        duration: 3000
+      });
+    } else {
+      this.snackBar.open("Kursen är redan tillagd i ditt ramschema", "Stäng", {
+        duration: 3000
+      });
+    }
+    
   }
 
+  onPageChange(event: any): void {
+    this.pageIndex.set(event.pageIndex);
+    this.pageSize.set(event.pageSize);
+  }
 }
