@@ -19,13 +19,17 @@ export class RamschemaService {
     return this.schema();
   }
 
-  addCourse(course: Course) {
+  addCourse(course: Course): boolean {
     const currentCourses = this.schema();
-    if (!currentCourses.find(c => c.courseCode === course.courseCode)) {
-      this.schema.set([...currentCourses, course]);
-    } else {
-      console.error(`Kursen: ${course.courseCode} är redan tillagd.`);
+    const courseExists = currentCourses.some(c => c.courseCode === course.courseCode);
+
+    if (!courseExists) {
+      {
+        this.schema.set([...currentCourses, course]);
+        return true;
+      }
     }
+    return false;
   }
 
   getTotPoints(): number {
