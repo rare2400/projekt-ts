@@ -13,6 +13,7 @@ mat-form-field {
     width: 100%;
     overflow-x: auto;
     border: 1px solid #e0e0e0;
+    margin: 0 auto 1em;
 }
 
 #add button {
@@ -42,7 +43,6 @@ mat-form-field {
     }
 
     .table {
-        margin: 0 auto;
         overflow-x: unset;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
