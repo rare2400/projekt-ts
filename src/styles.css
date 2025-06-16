@@ -8,8 +8,8 @@ h1 {
 }
 
 .container {
-    max-width: 65em;
-    margin: 1em;
+    max-width: 60em;
+    margin: 0.5em;
 }
 
 @media (min-width: 50em) {
