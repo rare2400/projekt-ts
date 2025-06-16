@@ -1,19 +1,20 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { CoursedataService } from '../../services/coursedata.service';
+import { RamschemaService } from '../../services/ramschema.service';
 import { Course } from '../../models/course';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-courses',
-  imports: [FormsModule, CommonModule, MatInputModule, MatSelect, MatOption, MatFormFieldModule, MatTableModule, MatCardModule, MatButtonModule, MatIconModule],
+  imports: [FormsModule, CommonModule, MatInputModule, MatSelect, MatOption, MatFormFieldModule, MatTableModule, MatButtonModule, MatIconModule, MatSnackBarModule],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'
 })
@@ -30,8 +31,7 @@ export class CoursesComponent {
   sortAsc = signal<boolean>(true);
   displayedColumns: string[] = ["courseCode", "courseName", "points", "subject", "syllabus", "add"];
 
-  //injection som hämtar kursdata från CoursedataService
-  courseService = inject(CoursedataService);
+  constructor(private courseService: CoursedataService, private ramschema: RamschemaService, private snackBar: MatSnackBar) { }
 
   //filterar och sorterar lista utifrån filter-/sorteringinställningar
   filteredCourses = computed(() => {
@@ -79,6 +79,13 @@ export class CoursesComponent {
       this.sortKey.set(key);
       this.sortAsc.set(true);
     }
+  }
+
+  addCourse(course: Course) {
+    this.ramschema.addCourse(course);
+    this.snackBar.open("Kurs tillagd i ramschema", "Stäng", {
+      duration: 3000
+    });
   }
 
 }

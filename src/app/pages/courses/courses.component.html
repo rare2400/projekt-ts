@@ -46,7 +46,7 @@
         <ng-container matColumnDef="add">
             <th mat-header-cell *matHeaderCellDef>Lägg till</th>
             <td mat-cell *matCellDef="let course" id="add"> 
-                <button mat-flat-button>
+                <button mat-flat-button (click)="addCourse(course)">
                     <mat-icon>add</mat-icon>
                     Lägg till
                 </button>
