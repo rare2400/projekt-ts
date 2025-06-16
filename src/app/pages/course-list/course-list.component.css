@@ -1,0 +1,51 @@
+#ingress {
+    text-align: center;
+}
+
+.table {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e0e0e0;
+}
+
+#syllabus {
+    color: #005dbb;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+#syllabus:hover {
+    text-decoration: underline;
+}
+
+#delete-heading {
+    text-align: center;
+}
+
+#delete button {
+    font-size: 0.875em;
+    white-space: nowrap;
+}
+
+.box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 1em;
+    font-size: 0.875em;
+}
+
+#clear {
+    margin: auto 0 auto auto;
+}
+
+@media (min-width: 50rem) {
+    .table {
+        margin: 0 auto;
+        overflow-x: unset;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .box {
+        font-size: 1em;
+    }
+}
