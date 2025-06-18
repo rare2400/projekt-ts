@@ -58,7 +58,6 @@ export class CoursesComponent {
         //jämför värdena för riktningen av sortering (asc/desc)
         return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0) * (asc ? 1 : -1);
       })
-    console.log("Filtered courses:", result);
     return result;
   });
 
@@ -96,7 +95,7 @@ export class CoursesComponent {
   addCourse(course: Course): void {
     const added = this.ramschema.addCourse(course);
 
-    if(added) {
+    if (added) {
       this.snackBar.open("Kurs tillagd i ramschema", "Stäng", {
         duration: 3000
       });
@@ -105,7 +104,7 @@ export class CoursesComponent {
         duration: 3000
       });
     }
-    
+
   }
 
   onPageChange(event: any): void {
