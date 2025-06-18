@@ -4,22 +4,22 @@
 <div class="table">
     <table mat-table [dataSource]="getCourses()" class="mat-elevation-z8">
         <ng-container matColumnDef="courseCode">
-            <th mat-header-cell *matHeaderCellDef class="th-link">Kod</th>
+            <th mat-header-cell *matHeaderCellDef>Kod</th>
             <td mat-cell *matCellDef="let course"> {{course.courseCode}} </td>
         </ng-container>
 
         <ng-container matColumnDef="courseName">
-            <th mat-header-cell *matHeaderCellDef class="th-link">Kursnamn</th>
+            <th mat-header-cell *matHeaderCellDef>Kursnamn</th>
             <td mat-cell *matCellDef="let course"> {{course.courseName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="points">
-            <th mat-header-cell *matHeaderCellDef class="th-link">Poäng</th>
+            <th mat-header-cell *matHeaderCellDef>Poäng</th>
             <td mat-cell *matCellDef="let course"> {{course.points}}p</td>
         </ng-container>
 
         <ng-container matColumnDef="subject">
-            <th mat-header-cell *matHeaderCellDef class="th-link">Ämne</th>
+            <th mat-header-cell *matHeaderCellDef>Ämne</th>
             <td mat-cell *matCellDef="let course"> {{course.subject}} </td>
         </ng-container>
 
