@@ -1,59 +1,55 @@
-# ProjektTs
+# Projekt TypeScript & Angular
+En webbapplikation skapad för ett fiktivt universitet utvecklat med [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10. Användaren kan se alla universitets
+kurser och skapa sitt egna ramschema genom att lägga till de önskade kurserna. För att hitta rätt på en specifik kurs kan man söka efter kursnamnet eller kurskoden i ett sökfält. Det går även att filtrera efter ämna genom att välja det önskade nämnet i en select-lista. `Kurskod`, `kursnamn`, `poäng` och `ämne` går att klicka på för att sortera i stigande och fallande ordning. Ramschemat går att redigera genom att ta bort kurser eller rensa listan helt, det totala antalet kurser och högskolepoängen står även utskrivet för sitt individuella ramschemat. 
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
 
-## Development server
+## Användning av projektet
+1. Klona repo
+```bash
+git clone https://github.com/rare2400/projekt-ts.git
+cd projekt-ts
+```
 
-To start a local development server, run:
+3. Installera paket
+```bash
+npm install
+```
 
+4. Starta utvecklingsserver
 ```bash
 ng serve
 ```
+4. Öppna `http://localhost:4200/` i webbläsaren
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
+5. Bygg färdigt projekt
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Verktyg
+- **Angular**: Skapa services, signals och component, samt HttpClient för att göra HTTP-anrop
+- **TypeScript**: Logiken bakom med filtrering och sortering
+- **HTML/CSS**: För att bygga och styla responsiv webbplats
+- **Git**: Versionshantering av koden
+- **[Json-fil](https://matdah.github.io/DT208G---Programmering-i-TypeScript/Moment%205%20-%20Projekt/miun_courses.json)**
 
-## Running unit tests
+## Funktionalitet
+- Se kurserna för ett universitet
+- Filtrera och sortera data
+  - Filtrering i sökformulär
+  - Filtrering genom specifikt ämne i select-lista
+  - Sortering fallande & stigande vid tryck på rubrik
+- Skapa sitt egna ramschemat som sparas i webbläsaren
+- Redigera ramschemat genom att ta bort kurs eller rensa hela listan
+- Responsiv design
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Utökad funktionalitet för överbetyg
+- Mer utvecklar användargränssnitt
+- Paginering
+- Fler undersidor - en startsida med ytterligare komponenter
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Skapad av
+Uppgift i kursen programmering i TypeScript     
+Webbutveklingsprogrammet, Mittuniversitetet     
+Ramona Reinholdz     
+[rare2400@student.miun.se](rare2400@student.miun.se)
