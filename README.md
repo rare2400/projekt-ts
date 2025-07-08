@@ -27,15 +27,15 @@ ng build
 ```
 
 ## Verktyg
-- **Angular**: Skapa services, signals och component, samt HttpClient för att göra HTTP-anrop
-- **TypeScript**: Logiken bakom med filtrering och sortering
-- **HTML/CSS**: För att bygga och styla responsiv webbplats
-- **Git**: Versionshantering av koden
+- **Angular**: Skapa components, services, signals etcetera
+- **Angular Material**: Användargränssnitt som färdiga komponenter hämtas ifrån
+- **TypeScript**: Statiskt typat programmeringsspråk vid utveckling av filtrering och sortering
+- **Git**: Versionshantering av kod
 - **[Json-fil](https://matdah.github.io/DT208G---Programmering-i-TypeScript/Moment%205%20-%20Projekt/miun_courses.json)**
 
 ## Funktionalitet
-- Se kurserna för ett universitet
-- Filtrera och sortera data
+- Se kurser för ett universitet hämtade ur en JSON-fil
+- Filtrera och sortera lista över kurser
   - Filtrering i sökformulär
   - Filtrering genom specifikt ämne i select-lista
   - Sortering fallande & stigande vid tryck på rubrik
@@ -44,7 +44,7 @@ ng build
 - Responsiv design
 
 ## Utökad funktionalitet för överbetyg
-- Mer utvecklar användargränssnitt
+- Mer utvecklat användargränssnitt
 - Paginering
 - Fler undersidor - en startsida med ytterligare komponenter
 
